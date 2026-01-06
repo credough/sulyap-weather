@@ -1,48 +1,84 @@
 import requests
 
-def get_weather_data(location, date_range):
+def get_coordinates(location_name):
     """
-    Fetch weather forecast from Open-Meteo API.
+    Convert a location name into latitude & longitude
+    using Open-Meteo Geocoding API.
     """
-    # Example: simple fetch using Open-Meteo
-    url = f"https://api.open-meteo.com/v1/forecast?latitude={location['lat']}&longitude={location['lon']}&daily=temperature_2m_max,precipitation_sum,windspeed_10m_max&timezone=auto"
-    response = requests.get(url)
+    url = "https://geocoding-api.open-meteo.com/v1/search"
+    params = {
+        "name": location_name,
+        "count": 1,
+        "language": "en",
+        "format": "json"
+    }
+
+    response = requests.get(url, params=params)
     data = response.json()
-    return data
 
+    if "results" not in data or not data["results"]:
+        return None
 
-def calculate_score(weather_data, activity):
+    result = data["results"][0]
+
+    return {
+        "name": result["name"],
+        "country": result.get("country"),
+        "lat": result["latitude"],
+        "lon": result["longitude"]
+    }
+
+def get_weather_forecast(lat, lon):
     """
-    Assign a score 0-100 per day based on activity type.
+    Fetch 16-day daily forecast from Open-Meteo.
     """
-    scores = []
+    url = "https://api.open-meteo.com/v1/forecast"
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "daily": [
+            "temperature_2m_max",
+            "precipitation_probability_max",
+            "windspeed_10m_max"
+        ],
+        "forecast_days": 16,
+        "timezone": "auto"
+    }
 
-    for day in weather_data['daily']['time']:
-        temp = weather_data['daily']['temperature_2m_max'][day]
-        rain = weather_data['daily']['precipitation_sum'][day]
-        wind = weather_data['daily']['windspeed_10m_max'][day]
+    response = requests.get(url, params=params)
+    return response.json()
 
-        score = 50  # Base score
+def score_day(temp, rain, wind, activity):
+    score = 50  # base score
 
-        if activity == 'Beach':
-            if temp > 28:
-                score += 40
-            if rain > 20:
-                score -= 50
-            if wind > 15:
-                score -= 20
-        elif activity == 'Hiking':
-            if temp < 30 and rain < 20:
-                score += 40
-            if wind > 15:
-                score -= 20
-        elif activity == 'Wedding':
-            if rain == 0:
-                score += 50
-            if wind > 10:
-                score -= 30
+    if activity == "Beach":
+        if temp > 28:
+            score += 40
+        if rain > 20:
+            score -= 50
+        if wind > 15:
+            score -= 20
 
-        score = max(0, min(100, score))
-        scores.append({'date': day, 'score': score, 'temp': temp, 'rain': rain, 'wind': wind})
+    elif activity == "Hiking":
+        if 18 <= temp <= 26:
+            score += 40
+        if rain > 30:
+            score -= 40
+        if wind > 20:
+            score -= 20
 
-    return scores
+    elif activity == "Wedding":
+        if rain == 0:
+            score += 50
+        if wind > 10:
+            score -= 30
+
+    return max(0, min(100, score))
+
+
+def score_badge(score):
+    if score >= 90:
+        return "🟢 Perfect"
+    elif score >= 70:
+        return "🟡 Good"
+    return "🔴 Risky"

@@ -1,33 +1,55 @@
-from flask import Blueprint, render_template, request
-from app.utils import get_weather_data, calculate_score
+from flask import Blueprint, request, jsonify
+from app.utils import (
+    get_coordinates,
+    get_weather_forecast,
+    score_day,
+    score_badge
+)
 
-main_bp = Blueprint('main', __name__)
+main = Blueprint("main", __name__)
 
-# Home page: input form
-@main_bp.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        location = request.form.get('location')
-        activity = request.form.get('activity')
-        date_range = request.form.get('date_range')  # e.g., next 2 weeks
+@main.route("/api/sulyap")
+def sulyap_weather():
+    location = request.args.get("location")
+    activity = request.args.get("activity", "Beach")
 
-        # Fetch weather data from API
-        weather_data = get_weather_data(location, date_range)
+    if not location:
+        return jsonify({"error": "Location is required"}), 400
 
-        # Calculate scores for each day
-        scores = calculate_score(weather_data, activity)
+    coords = get_coordinates(location)
+    if not coords:
+        return jsonify({"error": "Location not found"}), 404
 
-        # Determine top pick
-        top_pick = max(scores, key=lambda x: x['score'])
+    weather = get_weather_forecast(coords["lat"], coords["lon"])
+    daily = weather["daily"]
 
-        return render_template('results.html', scores=scores, top_pick=top_pick)
+    forecast = []
+    top_pick = None
 
-    return render_template('index.html')
+    for i, date in enumerate(daily["time"]):
+        temp = daily["temperature_2m_max"][i]
+        rain = daily["precipitation_probability_max"][i]
+        wind = daily["windspeed_10m_max"][i]
 
+        score = score_day(temp, rain, wind, activity)
 
-# Comparison page: 16-day side-by-side view
-@main_bp.route('/comparison', methods=['GET'])
-def comparison():
-    location = request.args.get('location')
-    weather_data = get_weather_data(location, '16_days')
-    return render_template('comparison.html', weather_data=weather_data)
+        day = {
+            "date": date,
+            "temp": temp,
+            "rain": rain,
+            "wind": wind,
+            "score": score,
+            "badge": score_badge(score)
+        }
+
+        forecast.append(day)
+
+        if not top_pick or score > top_pick["score"]:
+            top_pick = day
+
+    return jsonify({
+        "location": coords,
+        "activity": activity,
+        "top_pick": top_pick,
+        "forecast": forecast
+    })
