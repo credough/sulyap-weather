@@ -1,30 +1,107 @@
 <!DOCTYPE html>
-<html lang = en>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pick Your Activity</title>
-    </head>
-    <body>
-        <h1>Plan Your Activity</h1>
-        <form id = "form">
-            <input 
-            type="text"
-            id="location"
-            placeholder="Input Location"
-            required>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sulyap Weather - Plan Your Perfect Day</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <i data-lucide="cloud-sun"></i>
+                Sulyap Weather
+            </h1>
+            <p class="subtitle">Find the perfect day for your activity</p>
+        </header>
 
-        <select id="activity" required>
-            <option value="">Select activity</option>
-            <option value="Beach">Beach</option>
-            <option value="Hiking">Hiking</option>
-            <option value="Wedding">Wedding</option>
-        </select>
-        
-        <button type="submit">Find Best Day</button>
-            
-        </form>
-    <p id="status"></p>
+        <div class="search-card">
+            <form id="searchForm" class="search-form">
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="e.g., Manila, Tokyo, New York" autocomplete="off" required>
+                    <div id="autocomplete" class="autocomplete-dropdown"></div>
+                </div>
+                <div class="form-group">
+                    <label for="activity">Activity</label>
+                    <select id="activity">
+                        <option value="Beach">Beach</option>
+                        <option value="Hiking">Hiking</option>
+                        <option value="Wedding">Wedding</option>
+                    </select>
+                </div>
+                <button type="submit" id="submitBtn">Get Forecast</button>
+            </form>
+        </div>
 
-    </body>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+
+        <div id="error"></div>
+
+        <div id="results" class="results">
+            <div class="top-pick">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="target"></i>
+                    Best Day for <span id="activityName"></span>
+                </h2>
+                <p id="locationName" style="opacity: 0.9; margin-bottom: 10px;"></p>
+                <div class="top-pick-details">
+                    <div class="detail-item">
+                        <div class="detail-value" id="topDate">-</div>
+                        <div class="detail-label">Date</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value" id="topTemp">-</div>
+                        <div class="detail-label">Temperature</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value" id="topRain">-</div>
+                        <div class="detail-label">Rain Chance</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value" id="topWind">-</div>
+                        <div class="detail-label">Wind Speed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-grid" id="forecastGrid"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+<footer class="app-footer" data-aos="fade-up" data-aos-delay="300">
+
+  <div class="footer-content">
+
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/celindro-aaron-creed-p-720293358/" target="_blank" aria-label="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+
+      <a href="https://github.com/credough" target="_blank" aria-label="GitHub">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+      </a>
+
+      <a href="https://www.facebook.com/aaron.celindro.73" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+      </a>
+    </div>
+
+    <div class="footer-text">
+      © 2025 All rights reserved. Developed by <strong>Credo</strong>
+    </div>
+
+  </div>
+</footer>
+
+    <script src="../static/script.js"></script>
+
+    
+</body>
 </html>

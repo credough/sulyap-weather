@@ -1,10 +1,11 @@
-from flask import Blueprint, request, jsonify
-from app.utils import (
+from flask import Blueprint, request, jsonify, render_template
+from .utils import (
     get_coordinates,
     get_weather_forecast,
     score_day,
     score_badge
 )
+
 
 main = Blueprint("main", __name__)
 
@@ -53,3 +54,7 @@ def sulyap_weather():
         "top_pick": top_pick,
         "forecast": forecast
     })
+
+@main.route("/")
+def index():
+    return render_template("index.html")
