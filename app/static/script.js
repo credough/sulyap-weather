@@ -99,7 +99,7 @@ form.addEventListener('submit', async (e) => {
 
         displayResults(data);
     } catch (err) {
-        error.innerHTML = `<div class="error">❌ ${err.message}</div>`;
+        error.innerHTML = `<div class="error"> ${err.message}</div>`;
     } finally {
         loading.style.display = 'none';
     }
