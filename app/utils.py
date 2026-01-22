@@ -49,28 +49,31 @@ def get_weather_forecast(lat, lon):
     return response.json()
 
 def score_day(temp, rain, wind, activity):
+    temp = temp if temp is not None else 0
+    rain = rain if rain is not None else 0
+    wind = wind if wind is not None else 0
     score = 50  # base score
 
     if activity == "Beach":
-        if temp > 28:
+        if temp >= 28:
             score += 40
-        if rain > 20:
+        if rain >= 20:
             score -= 50
-        if wind > 15:
+        if wind >= 15:
             score -= 20
 
     elif activity == "Hiking":
         if 18 <= temp <= 26:
             score += 40
-        if rain > 30:
+        if rain >= 30:
             score -= 40
-        if wind > 20:
+        if wind >= 20:
             score -= 20
 
     elif activity == "Wedding":
         if rain == 0:
             score += 50
-        if wind > 10:
+        if wind >= 10:
             score -= 30
 
     return max(0, min(100, score))

@@ -22,15 +22,23 @@ def sulyap_weather():
         return jsonify({"error": "Location not found"}), 404
 
     weather = get_weather_forecast(coords["lat"], coords["lon"])
-    daily = weather["daily"]
+    daily = weather.get("daily")
+
+    if not daily:
+        return jsonify({"error": "Weather data unavailable"}), 500
+
+    times = daily.get("time", [])
+    temps = daily.get("temperature_2m_max", [])
+    rains = daily.get("precipitation_probability_max", [])
+    winds = daily.get("windspeed_10m_max", [])
 
     forecast = []
     top_pick = None
 
-    for i, date in enumerate(daily["time"]):
-        temp = daily["temperature_2m_max"][i]
-        rain = daily["precipitation_probability_max"][i]
-        wind = daily["windspeed_10m_max"][i]
+    for i, date in enumerate(times):
+        temp = temps[i] if i < len(temps) else None
+        rain = rains[i] if i < len(rains) else None
+        wind = winds[i] if i < len(winds) else None
 
         score = score_day(temp, rain, wind, activity)
 
@@ -54,6 +62,7 @@ def sulyap_weather():
         "top_pick": top_pick,
         "forecast": forecast
     })
+
 
 @main.route("/")
 def index():
