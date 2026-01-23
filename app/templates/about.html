@@ -9,32 +9,39 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <nav class="navbar">
+        <nav class="navbar">
         <div class="nav-brand">
            Sulyap-Weather
         </div>
-        <ul class="nav-links">
+<ul class="nav-links">
         <a href="{{ url_for('main.home_page') }}">Home</a>
         <a href="{{ url_for('main.about_page') }}">About</a>
         <a href="{{ url_for('main.result_page') }}">Results</a>
         </ul>
- 
 
     </nav>
-    <section id="home" class="home-section">
-        <header class="home-header">
-            <h1>
-                <i data-lucide="cloud-sun"></i>
-                Sulyap Weather
-            </h1>
-            <p class="subtitle">Make better plans with a 16-day weather forecast designed around your activities. Get helpful recommendations for beaches, hikes, and outdoor events based on real weather conditions.</p>
-        <a href="{{ url_for('main.result_page') }}" class="cta-btn">
-            Plan my day
-        </a>
-        </header>
-    </section>
-
-    <!-- FOOTER -->
+    <section class="how-it-works">
+    <h2>How <span>Sulyap Weather</span> Works</h2>
+    <p class="subtitle">Our system simplifies the weather forecast checking process</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon"><i class='bx bxs-map'></i></div>
+        <h3>Your City</h3>
+        <p>Input in your country and city to locate it according to Open-Meteo's Geocoding API.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class='bx bxs-bar-chart-alt-2'></i></div>
+        <h3>Choose Activity</h3>
+        <p>Select the activity or event you are planning to do.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class='bx bx-line-chart'></i></div>
+        <h3>View Results</h3>
+        <p>We’ll show the 16-day forecast and recommended day for that plan.</p>
+      </div>
+    </div>
+</section>
+ <!-- FOOTER -->
 <footer class="app-footer" data-aos="fade-up" data-aos-delay="300">
 
   <div class="footer-content">
