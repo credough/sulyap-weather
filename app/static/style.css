@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: #0a0e27;
+    background: #0a1628;
     min-height: 100vh;
     padding: 20px;
 }
@@ -18,8 +18,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(104, 103, 171, 0.3), transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(76, 23, 125, 0.3), transparent 50%);
+    background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.3), transparent 50%);
     pointer-events: none;
     z-index: 0;
 }
@@ -54,11 +54,20 @@ body::before {
 }
 
 .nav-brand {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: seashell;
+    font-size: 1.2rem;
 }
+
+.nav-brand .logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
 
 .nav-links {
   list-style: none;
@@ -68,7 +77,7 @@ body::before {
 
 .nav-links a {
   text-decoration: none;
-  color: #cfd3ff;
+  color: #bfdbfe;
   font-size: 0.95rem;
   position: relative;
   transition: color 0.3s ease;
@@ -86,12 +95,23 @@ body::before {
   bottom: -6px;
   width: 0;
   height: 2px;
-  background: #a840f8;
+  background: #3b82f6;
   transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+.hero-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hero-logo {
+    width: 48px;
+    height: 48px;
 }
 
 
@@ -142,7 +162,7 @@ body::before {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(178, 38, 230, 0.702);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6);
 }
 
 .card .icon {
@@ -165,19 +185,19 @@ body::before {
     border: none;
     cursor: pointer;
 
-    background: linear-gradient(135deg, #8a4bdc, #6a3bb8);
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: #fdfdfd;
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     display: inline-block;
-    box-shadow: 0 4px 15px rgba(138, 75, 220, 0.4);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
 .cta-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(138, 75, 220, 0.6);
-    background: linear-gradient(135deg, #9a5bec 0%, #7a4bc8 100%);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
 }
 
 .cta-btn:active {
@@ -279,9 +299,9 @@ input::placeholder {
 input:focus,
 select:focus {
     outline: none;
-    border-color: #8a4bdc;
+    border-color: #3b82f6;
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(138, 75, 220, 0.2);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 select option {
@@ -322,7 +342,7 @@ select option {
 }
 
 .autocomplete-item:hover {
-    background: rgba(138, 75, 220, 0.3);
+    background: rgba(59, 130, 246, 0.3);
 }
 
 .autocomplete-item-name {
@@ -350,7 +370,7 @@ select option {
 
 button {
     padding: 14px 30px;
-    background: linear-gradient(135deg, #8a4bdc 0%, #6a3bb8 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     color: white;
     border: none;
     border-radius: 10px;
@@ -358,13 +378,13 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(138, 75, 220, 0.4);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(138, 75, 220, 0.6);
-    background: linear-gradient(135deg, #9a5bec 0%, #7a4bc8 100%);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
 }
 
 button:disabled {
@@ -415,7 +435,7 @@ button:disabled {
 }
 
 .top-pick {
-    background: linear-gradient(135deg, rgba(48, 138, 70, 0.3) 0%, rgba(74, 243, 55, 0.3) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(96, 165, 250, 0.3) 100%);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
@@ -474,8 +494,8 @@ button:disabled {
 
 .day-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(138, 75, 220, 0.4);
-    border-color: rgba(138, 75, 220, 0.5);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    border-color: rgba(59, 130, 246, 0.5);
 }
 
 .day-header {
@@ -563,10 +583,10 @@ button:disabled {
 
 .score-fill {
     height: 100%;
-    background: linear-gradient(90deg, #8a4bdc 0%, #6a3bb8 100%);
+    background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
     border-radius: 10px;
     transition: width 0.5s ease;
-    box-shadow: 0 0 10px rgba(138, 75, 220, 0.5);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
 .app-footer {

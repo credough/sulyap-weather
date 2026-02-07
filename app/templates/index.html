@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sulyap Weather - Plan Your Perfect Day</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!------favicon-->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/IMG_2220.PNG') }}">
     <link rel="stylesheet" href="../static/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-brand">
-           Sulyap-Weather
-        </div>
+    <img src="../static/img/IMG_2220.PNG" alt="Sulyap Weather Logo" class="logo">
+    <span>Sulyap Weather</span>
+</div>
+
         <ul class="nav-links">
         <a href="{{ url_for('main.home_page') }}">Home</a>
         <a href="{{ url_for('main.about_page') }}">About</a>
@@ -23,10 +27,11 @@
     </nav>
     <section id="home" class="home-section">
         <header class="home-header">
-            <h1>
-                <i data-lucide="cloud-sun"></i>
-                Sulyap Weather
-            </h1>
+            <h1 class="hero-title">
+    <img src="../static/img/IMG_2220.PNG" alt="Sulyap Weather Logo" class="hero-logo">
+    Sulyap Weather
+</h1>
+
             <p class="subtitle">Make better plans with a 16-day weather forecast designed around your activities. Get helpful recommendations for beaches, hikes, and outdoor events based on real weather conditions.</p>
         <a href="{{ url_for('main.result_page') }}" class="cta-btn">
             Plan my day
