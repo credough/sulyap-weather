@@ -7,16 +7,21 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../static/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-----poppins------>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
         <nav class="navbar">
         <div class="nav-brand">
-           Sulyap-Weather
+    <img src="../static/img/IMG_2220.PNG" alt="Sulyap Weather Logo" class="logo">
+    <span>Sulyap Weather</span>
         </div>
 <ul class="nav-links">
         <a href="{{ url_for('main.home_page') }}">Home</a>
         <a href="{{ url_for('main.about_page') }}">About</a>
-        <a href="{{ url_for('main.result_page') }}">Results</a>
+        <a href="{{ url_for('main.result_page') }}">Plan</a>
         </ul>
 
     </nav>
