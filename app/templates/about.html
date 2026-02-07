@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sulyap Weather - Plan Your Perfect Day</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+        <nav class="navbar">
+        <div class="nav-brand">
+           Sulyap-Weather
+        </div>
+<ul class="nav-links">
+        <a href="{{ url_for('main.home_page') }}">Home</a>
+        <a href="{{ url_for('main.about_page') }}">About</a>
+        <a href="{{ url_for('main.result_page') }}">Results</a>
+        </ul>
+
+    </nav>
+    <section class="how-it-works">
+    <h2>How <span>Sulyap Weather</span> Works</h2>
+    <p class="subtitle">Our system simplifies the weather forecast checking process</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon"><i class='bx bxs-map'></i></div>
+        <h3>Your City</h3>
+        <p>Input in your country and city to locate it according to Open-Meteo's Geocoding API.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class='bx bxs-bar-chart-alt-2'></i></div>
+        <h3>Choose Activity</h3>
+        <p>Select the activity or event you are planning to do.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i class='bx bx-line-chart'></i></div>
+        <h3>View Results</h3>
+        <p>We’ll show the 16-day forecast and recommended day for that plan.</p>
+      </div>
+    </div>
+</section>
+ <!-- FOOTER -->
+<footer class="app-footer" data-aos="fade-up" data-aos-delay="300">
+
+  <div class="footer-content">
+
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/celindro-aaron-creed-p-720293358/" target="_blank" aria-label="LinkedIn">
+        <img src="../static/img/linkedin.png" alt="LinkedIn">
+      </a>
+
+      <a href="https://github.com/credough" target="_blank" aria-label="GitHub">
+        <img src="../static/img/github.png" alt="GitHub">
+      </a>
+
+      <a href="https://www.facebook.com/aaron.celindro.73" target="_blank" aria-label="Facebook">
+        <img src="../static/img/facebook.png" alt="Facebook">
+      </a>
+    </div>
+
+    <div class="footer-text">
+      © 2025 All rights reserved. Developed by <strong>Credo</strong>
+    </div>
+
+  </div>
+</footer>
+
+    <script src="../static/script.js"></script>
+
+    
+</body>
+</html>

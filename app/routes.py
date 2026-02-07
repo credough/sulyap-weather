@@ -65,5 +65,17 @@ def sulyap_weather():
 
 
 @main.route("/")
-def index():
+def home_page():
     return render_template("index.html")
+
+
+@main.route("/result")
+def result_page():
+    return render_template("result.html")
+
+
+@main.route("/about")
+def about_page():
+    return render_template("about.html")
+
+
