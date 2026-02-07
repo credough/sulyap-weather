@@ -9,6 +9,11 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/IMG_2220.PNG') }}">
     <link rel="stylesheet" href="../static/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-----poppins------>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <nav class="navbar">
@@ -20,7 +25,7 @@
         <ul class="nav-links">
         <a href="{{ url_for('main.home_page') }}">Home</a>
         <a href="{{ url_for('main.about_page') }}">About</a>
-        <a href="{{ url_for('main.result_page') }}">Results</a>
+        <a href="{{ url_for('main.result_page') }}">Plan</a>
         </ul>
  
 
@@ -38,90 +43,6 @@
         </a>
         </header>
     </section>
-
-    <section class="how-it-works">
-    <h2>How <span>Sulyap Weather</span> Works</h2>
-    <p class="subtitle">Our system simplifies the weather forecast checking process</p>
-    <div class="cards">
-      <div class="card">
-        <div class="icon"><i class='bx bxs-map'></i></div>
-        <h3>Your City</h3>
-        <p>Input in your country and city to locate it according to Open-Meteo's Geocoding API.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class='bx bxs-bar-chart-alt-2'></i></div>
-        <h3>Choose Activity</h3>
-        <p>Select the activity or event you are planning to do.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><i class='bx bx-line-chart'></i></div>
-        <h3>View Results</h3>
-        <p>We’ll show the 16-day forecast and recommended day for that plan.</p>
-      </div>
-    </div>
-</section>
-
-<section class="result-section">
-    <div class="container">
-    <h2>Plan Ahead Now</h2>
-    <p>Input the required details below</p>
-        <div class="search-card">
-            <form id="searchForm" class="search-form">
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" placeholder="e.g., Manila, Tokyo, New York" autocomplete="off" required>
-                    <div id="autocomplete" class="autocomplete-dropdown"></div>
-                </div>
-                <div class="form-group">
-                    <label for="activity">Activity</label>
-                    <select id="activity">
-                        <option value="Beach">Beach</option>
-                        <option value="Hiking">Hiking</option>
-                        <option value="Wedding">Wedding</option>
-                    </select>
-                </div>
-                <button type="submit" id="submitBtn">Get Forecast</button>
-            </form>
-        </div>
-
-        <div id="loading" class="loading" style="display: none;">
-            <div class="spinner"></div>
-            <p>Fetching weather data...</p>
-        </div>
-
-        <div id="error"></div>
-
-        <div id="results" class="results">
-            <div class="top-pick">
-                <h2 style="display: flex; align-items: center; gap: 10px;">
-                    <i data-lucide="target"></i>
-                    Best Day for <span id="activityName"></span>
-                </h2>
-                <p id="locationName" style="opacity: 0.9; margin-bottom: 10px;"></p>
-                <div class="top-pick-details">
-                    <div class="detail-item">
-                        <div class="detail-value" id="topDate">-</div>
-                        <div class="detail-label">Date</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-value" id="topTemp">-</div>
-                        <div class="detail-label">Temperature</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-value" id="topRain">-</div>
-                        <div class="detail-label">Rain Chance</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-value" id="topWind">-</div>
-                        <div class="detail-label">Wind Speed</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="forecast-grid" id="forecastGrid"></div>
-        </div>
-    </div>
-</section>
 
     <!-- FOOTER -->
 <footer class="app-footer" data-aos="fade-up" data-aos-delay="300">
