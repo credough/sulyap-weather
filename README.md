@@ -1,7 +1,7 @@
 <div align="center">
 
   <h1>
-    <img src="logo/IMG_2220.PNG" alt="Sulyap Weather Logo" height="50" style="vertical-align: middle; margin-right: 10px;"/>
+    <img src="logo/IMG_2220.PNG" alt="Sulyap Weather Logo" height="30" style="vertical-align: middle; margin-right: 10px;"/>
     Sulyap-weather
   </h1>
 
@@ -31,9 +31,6 @@ A Flask-based weather intelligence API that fetches real-time 16-day forecasts a
 
 ### Input Fields
 ![An interface showing location input and activity selector](screenshots/user_input.png)
-
-### Forecast Results — Beach Activity
-![16-day forecast cards with scores and badges for beach activity in Boracay](screenshots/forecast-beach.png)
 
 ### Top Pick Highlight
 ![Top pick card showing the best day with a Perfect badge](screenshots/top-pick.png)
